@@ -22,6 +22,7 @@ import { PageLayout } from '../../components/PageLayout';
 import { PageHero } from './HelpShared';
 import { useStore, Order } from '../../context/StoreContext';
 import { API_BASE } from '../../config';
+import { formatCambodiaTime } from '../../utils/date';
 
 interface TrackedOrderDetails {
   id: string;
@@ -128,9 +129,7 @@ export function TrackOrderPage() {
               }
             ];
 
-        const createdDate = orderData.created_at
-          ? new Date(orderData.created_at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", hour: "2-digit", minute: "2-digit" })
-          : new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+        const createdDate = formatCambodiaTime(orderData.created_at || Date.now());
 
         const resolvedOrderId = orderData.id ? String(orderData.id) : cleanId;
 
@@ -204,7 +203,7 @@ export function TrackOrderPage() {
 
       setTrackedOrder({
         id: matchedLocalOrder.id,
-        date: matchedLocalOrder.date || new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }),
+        date: formatCambodiaTime(matchedLocalOrder.date || Date.now()),
         estimatedDelivery: step === 3 ? "Delivered" : step === 2 ? "Package Prepared" : "Awaiting Admin Preparation",
         shippingSpeed: "Standard Delivery",
         deliveryTimeDays: step === 3 ? "Completed" : "1 - 2 Business Days",

@@ -30,6 +30,7 @@ import {
 } from "lucide-react";
 import { useStore } from "../context/StoreContext";
 import { API_BASE } from "../config";
+import { formatCambodiaTime, formatCambodiaDateOnly } from "../utils/date";
 
 interface CheckoutProps {
   isOpen: boolean;
@@ -485,11 +486,7 @@ export function Checkout({ isOpen, onClose }: CheckoutProps) {
               const snapshot = [...cart];
               addOrder({
                 id: data.tran_id,
-                date: new Date().toLocaleDateString("en-US", {
-                  month: "short",
-                  day: "2-digit",
-                  year: "numeric",
-                }),
+                date: formatCambodiaTime(new Date()),
                 status: "Processing",
                 statusColor: "bg-emerald-100 text-emerald-700",
                 items: snapshot.map((i) => i.title),
@@ -562,11 +559,7 @@ export function Checkout({ isOpen, onClose }: CheckoutProps) {
     setTimeout(() => {
       addOrder({
         id: resolvedId,
-        date: new Date().toLocaleDateString("en-US", {
-          month: "short",
-          day: "2-digit",
-          year: "numeric",
-        }),
+        date: formatCambodiaTime(new Date()),
         status: "Processing",
         statusColor: "bg-emerald-100 text-emerald-700",
         items: snapshot.map((i) => i.title),
@@ -635,11 +628,7 @@ export function Checkout({ isOpen, onClose }: CheckoutProps) {
 
               addOrder({
                 id: resolvedId,
-                date: new Date().toLocaleDateString("en-US", {
-                  month: "short",
-                  day: "2-digit",
-                  year: "numeric",
-                }),
+                date: formatCambodiaTime(new Date()),
                 status: "Processing",
                 statusColor: "bg-emerald-100 text-emerald-700",
                 items: snapshot.map((i) => i.title),
@@ -720,11 +709,7 @@ export function Checkout({ isOpen, onClose }: CheckoutProps) {
     setTimeout(() => {
       addOrder({
         id: resolvedId,
-        date: new Date().toLocaleDateString("en-US", {
-          month: "short",
-          day: "2-digit",
-          year: "numeric",
-        }),
+        date: formatCambodiaTime(new Date()),
         status: "Processing",
         statusColor: "bg-emerald-100 text-emerald-700",
         items: snapshot.map((i) => i.title),
@@ -801,11 +786,7 @@ export function Checkout({ isOpen, onClose }: CheckoutProps) {
     setTimeout(() => {
       addOrder({
         id: resolvedId,
-        date: new Date().toLocaleDateString("en-US", {
-          month: "short",
-          day: "2-digit",
-          year: "numeric",
-        }),
+        date: formatCambodiaTime(new Date()),
         status: "Processing",
         statusColor: "bg-emerald-100 text-emerald-700",
         items: snapshot.map((i) => i.title),
@@ -2450,7 +2431,7 @@ export function Checkout({ isOpen, onClose }: CheckoutProps) {
                   </div>
                   <div className="text-right">
                     <p className="text-xs text-gray-500 dark:text-gray-400 font-bold uppercase tracking-wider mb-2">Date</p>
-                    <p className="font-bold text-gray-900 dark:text-white">{new Date().toLocaleDateString()}</p>
+                    <p className="font-bold text-gray-900 dark:text-white">{formatCambodiaTime(new Date())}</p>
                   </div>
                 </div>
 

@@ -8,6 +8,7 @@ import {
 import { Book, CartItem, WishlistItem, User } from "../types";
 import { translations, TranslationKey } from "../data/translations";
 import { API_BASE } from "../config";
+import { formatCambodiaTime } from "../utils/date";
 
 export interface Order {
   id: string;
@@ -349,11 +350,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
         if (Array.isArray(data)) {
           const mapped: Order[] = data.map((o: any) => ({
             id: String(o.id),
-            date: new Date(o.created_at || Date.now()).toLocaleDateString("en-US", {
-              month: "short",
-              day: "2-digit",
-              year: "numeric",
-            }),
+            date: formatCambodiaTime(o.created_at || Date.now()),
             status: o.status ? o.status.charAt(0).toUpperCase() + o.status.slice(1) : "Processing",
             statusColor: o.status === "delivered" ? "bg-emerald-100 text-emerald-700" : "bg-blue-100 text-blue-700",
             items: (o.items || []).map((it: any) => it.book?.title || "Book"),

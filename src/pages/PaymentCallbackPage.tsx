@@ -3,6 +3,7 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import { CheckCircle2, XCircle, Loader2, ArrowRight, ShoppingBag } from "lucide-react";
 import { useStore } from "../context/StoreContext";
 import { API_BASE } from "../config";
+import { formatCambodiaTime } from "../utils/date";
 
 export function PaymentCallbackPage() {
   const [searchParams] = useSearchParams();
@@ -37,11 +38,7 @@ export function PaymentCallbackPage() {
           clearCart();
           addOrder({
             id: tranId,
-            date: new Date().toLocaleDateString("en-US", {
-              month: "short",
-              day: "2-digit",
-              year: "numeric",
-            }),
+            date: formatCambodiaTime(new Date()),
             status: "Processing",
             statusColor: "bg-emerald-100 text-emerald-700",
             items: ["ABA PayWay Order"],
