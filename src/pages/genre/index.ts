@@ -1,0 +1,12 @@
+export { FictionPage } from "./FictionPage";
+export { NonFictionPage } from "./NonFictionPage";
+export { SelfHelpPage } from "./SelfHelpPage";
+export { BiographyPage } from "./BiographyPage";
+export { ChildrensPage } from "./ChildrensPage";
+export { ScienceFictionPage } from "./ScienceFictionPage";
+export { TechnologyPage } from "./TechnologyPage";
+export { KhmerLiteraturePage } from "./KhmerLiteraturePage";
+export { NovelPage } from "./NovelPage";
+export { HealthPage } from "./HealthPage";
+export { FinancePage } from "./FinancePage";
+export { ArtPage } from "./ArtPage";

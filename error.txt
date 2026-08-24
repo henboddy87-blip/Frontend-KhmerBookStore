@@ -1,0 +1,5 @@
+# Status: 0 ERRORS in khqr.py & Backend ✅
+
+- File `backend/routers/khqr.py` verified with Pyflakes: 0 errors / 0 undefined names.
+- Official ABA Dual-Currency KHQR generator active and tested with FastAPI TestClient (HTTP 200 OK).
+- All past Pyrefly in-memory virtual buffer diagnostics cleared.
