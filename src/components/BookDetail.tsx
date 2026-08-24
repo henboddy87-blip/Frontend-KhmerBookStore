@@ -50,7 +50,7 @@ export function BookDetail({ book, onClose }: BookDetailProps) {
   const [currentImg, setCurrentImg] = useState(0);
   const inWishlist = isInWishlist(book.id);
   
-  const [reviews, setReviews] = useState<any[]>([]);
+  const [reviews, setReviews] = useState<Review[]>([]);
   const [reviewForm, setReviewForm] = useState({ rating: 5, comment: "" });
   const [submittingReview, setSubmittingReview] = useState(false);
   const [reviewMessage, setReviewMessage] = useState("");

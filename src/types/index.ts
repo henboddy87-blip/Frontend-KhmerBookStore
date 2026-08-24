@@ -54,14 +54,22 @@ export interface Order {
 
 export interface Review {
   id: number;
-  userName: string;
-  userAvatar: string;
+  userName?: string;
+  userAvatar?: string;
+  user?: {
+    id?: number;
+    name?: string;
+    avatar?: string;
+    email?: string;
+  };
   rating: number;
-  date: string;
-  title: string;
+  date?: string;
+  created_at?: string;
+  title?: string;
   comment: string;
-  helpful: number;
-  verified: boolean;
+  helpful?: number;
+  verified?: boolean;
+  is_approved?: boolean;
 }
 
 export interface FlashSale {

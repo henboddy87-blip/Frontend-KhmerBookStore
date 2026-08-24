@@ -62,6 +62,12 @@ export function BookRowSection({
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
           <div>
+            {badge && (
+              <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border mb-2 ${getBadgeColors()}`}>
+                {badgeIcon}
+                {badge}
+              </span>
+            )}
             <h2
               className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 dark:text-white tracking-tight"
               style={{ fontFamily: "Merriweather, serif" }}

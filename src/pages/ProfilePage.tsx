@@ -5,7 +5,6 @@ import {
   Mail as FaEnvelope, 
   Camera as FaCamera, 
   ShoppingBag as FaShoppingBag, 
-  Settings as FaSettings,
   LogOut as FaSignOutAlt,
   PackageOpen as FaBoxOpen,
   CheckCircle2 as FaCheckCircle,

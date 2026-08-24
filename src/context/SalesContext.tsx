@@ -47,72 +47,7 @@ import { API_BASE as ROOT_API_BASE } from "../config";
 
 const API_BASE = `${ROOT_API_BASE}/api/sales`;
 
-// Fallback demo data if backend tables are newly initialized
-const DEFAULT_FALLBACK_CAMPAIGNS: DiscountCampaign[] = [
-  {
-    id: 1,
-    title: "Summer Reading Festival 2026",
-    description: "Enjoy up to 25% off across all bestselling literature, arts, and classics.",
-    discount_percent: 25,
-    category: "all",
-    banner_image: "",
-    bg_gradient: "bg-emerald-900",
-    start_date: new Date(Date.now() - 3 * 86400000).toISOString(),
-    end_date: new Date(Date.now() + 14 * 86400000).toISOString(),
-    is_active: true,
-  },
-  {
-    id: 2,
-    title: "Tech & Science Innovation Drop",
-    description: "Supercharge your career with 20% discount on programming and tech books.",
-    discount_percent: 20,
-    category: "technology",
-    banner_image: "",
-    bg_gradient: "bg-emerald-900",
-    start_date: new Date(Date.now() - 2 * 86400000).toISOString(),
-    end_date: new Date(Date.now() + 10 * 86400000).toISOString(),
-    is_active: true,
-  },
-];
 
-const DEFAULT_FALLBACK_COUPONS: Coupon[] = [
-  {
-    id: 1,
-    code: "BOOKWORM15",
-    description: "15% off for book lovers on orders over $20",
-    discount_type: "percentage",
-    discount_value: 15,
-    min_spend: 20,
-    is_active: true,
-  },
-  {
-    id: 2,
-    code: "READER20",
-    description: "20% off when spending $40 or more",
-    discount_type: "percentage",
-    discount_value: 20,
-    min_spend: 40,
-    is_active: true,
-  },
-  {
-    id: 3,
-    code: "SAVE10",
-    description: "$10 flat discount on orders over $50",
-    discount_type: "fixed",
-    discount_value: 10,
-    min_spend: 50,
-    is_active: true,
-  },
-  {
-    id: 4,
-    code: "WELCOME25",
-    description: "25% discount for new bookstore members",
-    discount_type: "percentage",
-    discount_value: 25,
-    min_spend: 30,
-    is_active: true,
-  },
-];
 
 export const mapSalesBook = (b: any): Book => {
   const origPrice = Number(b.original_price ?? b.originalPrice ?? b.price ?? 0);

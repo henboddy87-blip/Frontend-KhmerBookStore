@@ -269,12 +269,12 @@ export function Checkout({ isOpen, onClose }: CheckoutProps) {
   // KHQR (khqr.cc / ACLEDA / Wing / Bakong) Integration State
   const [khqrLoading, setKhqrLoading] = useState(false);
   const [khqrTranId, setKhqrTranId] = useState<string | null>(null);
-  const [khqrQrString, setKhqrQrString] = useState<string | null>(null);
+  const [, setKhqrQrString] = useState<string | null>(null);
   const [khqrQrImage, setKhqrQrImage] = useState<string | null>(null);
   const [khqrError, setKhqrError] = useState<string | null>(null);
   const [khqrPollingTimer, setKhqrPollingTimer] = useState<any>(null);
-  const [khqrBakongAcc, setKhqrBakongAcc] = useState<string>("010358062@abaa");
-  const [khqrIsStatic, setKhqrIsStatic] = useState<boolean>(false);
+  const [khqrBakongAcc] = useState<string>("010358062@abaa");
+  const [khqrIsStatic] = useState<boolean>(false);
   const [paymentReceipt, setPaymentReceipt] = useState<string | null>(null);
   const [receiptError, setReceiptError] = useState<string | null>(null);
 
@@ -620,7 +620,7 @@ export function Checkout({ isOpen, onClose }: CheckoutProps) {
         if (khqrPollingTimer) clearInterval(khqrPollingTimer);
         const poll = setInterval(async () => {
           try {
-            const checkRes = await fetch(`${backendBase}/api/khqr/check/${data.tran_id}`);
+            const checkRes = await fetch(`${API_BASE}/api/khqr/check/${data.tran_id}`);
             const checkData = await checkRes.json();
             if (checkData.is_paid) {
               clearInterval(poll);
@@ -2356,7 +2356,7 @@ export function Checkout({ isOpen, onClose }: CheckoutProps) {
                   </button>
                 </div>
               </div>
-              <OrderSummary />
+              {renderOrderSummary()}
             </div>
           )}
 
