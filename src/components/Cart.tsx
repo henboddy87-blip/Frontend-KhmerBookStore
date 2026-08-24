@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { CartIcon } from "./NavIcons";
 import { useStore } from "../context/StoreContext";
+import { API_BASE } from "../config";
 
 interface CartProps {
   isOpen: boolean;
@@ -26,7 +27,7 @@ export function Cart({ isOpen, onClose, onCheckout }: CartProps) {
   const handlePromo = async () => {
     if (!promo.trim()) return;
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/sales/coupons/validate", {
+      const res = await fetch(`${API_BASE}/api/sales/coupons/validate`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ code: promo.trim(), cart_total: cartTotal }),

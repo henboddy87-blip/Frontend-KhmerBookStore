@@ -43,7 +43,9 @@ interface SalesContextType {
   refreshSales: () => Promise<void>;
 }
 
-const API_BASE = "http://127.0.0.1:8000/api/sales";
+import { API_BASE as ROOT_API_BASE } from "../config";
+
+const API_BASE = `${ROOT_API_BASE}/api/sales`;
 
 // Fallback demo data if backend tables are newly initialized
 const DEFAULT_FALLBACK_CAMPAIGNS: DiscountCampaign[] = [
@@ -185,9 +187,9 @@ const SalesContext = createContext<SalesContextType | undefined>(undefined);
 export function SalesProvider({ children }: { children: ReactNode }) {
   const { books } = useStore();
   const [flashSales, setFlashSales] = useState<FlashSale[]>([]);
-  const [campaigns, setCampaigns] = useState<DiscountCampaign[]>(DEFAULT_FALLBACK_CAMPAIGNS);
+  const [campaigns, setCampaigns] = useState<DiscountCampaign[]>([]);
   const [specialOffers, setSpecialOffers] = useState<SpecialOffer[]>([]);
-  const [coupons, setCoupons] = useState<Coupon[]>(DEFAULT_FALLBACK_COUPONS);
+  const [coupons, setCoupons] = useState<Coupon[]>([]);
   const [loadingSales, setLoadingSales] = useState(false);
   const [copiedCoupon, setCopiedCoupon] = useState<string | null>(null);
   const [, setClock] = useState(0);
@@ -283,9 +285,9 @@ export function SalesProvider({ children }: { children: ReactNode }) {
             });
             setFlashSales(salesWithBooks);
           }
-          if (Array.isArray(hubData.campaigns) && hubData.campaigns.length > 0) setCampaigns(hubData.campaigns);
+          if (Array.isArray(hubData.campaigns)) setCampaigns(hubData.campaigns);
           if (Array.isArray(hubData.special_offers)) setSpecialOffers(hubData.special_offers);
-          if (Array.isArray(hubData.coupons) && hubData.coupons.length > 0) setCoupons(hubData.coupons);
+          if (Array.isArray(hubData.coupons)) setCoupons(hubData.coupons);
           setLoadingSales(false);
           return;
         }
@@ -317,13 +319,9 @@ export function SalesProvider({ children }: { children: ReactNode }) {
 
       if (campRes && campRes.ok) {
         const campData = await campRes.json();
-        if (Array.isArray(campData) && campData.length > 0) {
+        if (Array.isArray(campData)) {
           setCampaigns(campData);
-        } else {
-          setCampaigns(DEFAULT_FALLBACK_CAMPAIGNS);
         }
-      } else {
-        setCampaigns(DEFAULT_FALLBACK_CAMPAIGNS);
       }
 
       if (spRes && spRes.ok) {
@@ -333,18 +331,12 @@ export function SalesProvider({ children }: { children: ReactNode }) {
 
       if (coupRes && coupRes.ok) {
         const coupData = await coupRes.json();
-        if (Array.isArray(coupData) && coupData.length > 0) {
+        if (Array.isArray(coupData)) {
           setCoupons(coupData);
-        } else {
-          setCoupons(DEFAULT_FALLBACK_COUPONS);
         }
-      } else {
-        setCoupons(DEFAULT_FALLBACK_COUPONS);
       }
     } catch (e) {
-      console.warn("Failed fetching sales data, using fallbacks", e);
-      setCampaigns(DEFAULT_FALLBACK_CAMPAIGNS);
-      setCoupons(DEFAULT_FALLBACK_COUPONS);
+      console.warn("Failed fetching sales data", e);
     } finally {
       setLoadingSales(false);
     }

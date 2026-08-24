@@ -7,6 +7,7 @@ import {
 } from "react";
 import { Book, CartItem, WishlistItem, User } from "../types";
 import { translations, TranslationKey } from "../data/translations";
+import { API_BASE } from "../config";
 
 export interface Order {
   id: string;
@@ -239,7 +240,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     fetchingRef.current = true;
     lastFetchRef.current = now;
 
-    fetch("http://127.0.0.1:8000/api/books/all", {
+    fetch(`${API_BASE}/api/books/all`, {
       headers: { "Accept": "application/json" },
     })
       .then((res) => {
@@ -278,7 +279,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
         setUser(null);
       } else {
         setToken(storedToken);
-        fetch("http://127.0.0.1:8000/api/auth/me", {
+        fetch(`${API_BASE}/api/auth/me`, {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
         .then((res) => {
@@ -340,7 +341,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       return;
     }
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/orders/my-orders", {
+      const res = await fetch(`${API_BASE}/api/orders/my-orders`, {
         headers: { Authorization: `Bearer ${t}` },
       });
       if (res.ok) {
@@ -482,7 +483,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     setAuthError(null);
     try {
       if (isRegister) {
-        const res = await fetch("http://127.0.0.1:8000/api/auth/register", {
+        const res = await fetch(`${API_BASE}/api/auth/register`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email, password, name: name || email.split('@')[0], avatar }),
@@ -493,7 +494,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
         }
       }
       
-      const res = await fetch("http://127.0.0.1:8000/api/auth/login", {
+      const res = await fetch(`${API_BASE}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password: password || "google-auth" }),
@@ -522,7 +523,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const googleAuth = async (email: string, name?: string, avatar?: string) => {
     setAuthError(null);
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/auth/google", {
+      const res = await fetch(`${API_BASE}/api/auth/google`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, name, avatar }),
@@ -561,7 +562,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     const token = localStorage.getItem("frontend_token");
     if (!token) throw new Error("Not logged in");
     
-    const res = await fetch("http://127.0.0.1:8000/api/auth/me", {
+    const res = await fetch(`${API_BASE}/api/auth/me`, {
       method: "PUT",
       headers: { 
         "Content-Type": "application/json",

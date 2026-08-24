@@ -10,7 +10,8 @@ import {
   Tag,
 } from "lucide-react";
 import { WishlistIcon, CartIcon } from "./NavIcons";
-import { Book } from "../types";
+import { Book, Review } from "../types";
+import { API_BASE } from "../config";
 import { useStore } from "../context/StoreContext";
 import { useSales } from "../context/SalesContext";
 import { OptimizedImage } from "./OptimizedImage";
@@ -73,7 +74,7 @@ export function BookDetail({ book, onClose }: BookDetailProps) {
     document.body.classList.add("book-detail-open");
     
     // Fetch real reviews for this book
-    fetch(`http://127.0.0.1:8000/api/reviews/book/${book.id}`)
+    fetch(`${API_BASE}/api/reviews/book/${book.id}`)
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data)) setReviews(data);
@@ -92,7 +93,7 @@ export function BookDetail({ book, onClose }: BookDetailProps) {
     }
     setSubmittingReview(true);
     try {
-      const res = await fetch(`http://127.0.0.1:8000/api/reviews/${book.id}`, {
+      const res = await fetch(`${API_BASE}/api/reviews/${book.id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

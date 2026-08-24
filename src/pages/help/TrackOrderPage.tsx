@@ -21,6 +21,7 @@ import {
 import { PageLayout } from '../../components/PageLayout';
 import { PageHero } from './HelpShared';
 import { useStore, Order } from '../../context/StoreContext';
+import { API_BASE } from '../../config';
 
 interface TrackedOrderDetails {
   id: string;
@@ -81,7 +82,7 @@ export function TrackOrderPage() {
 
     try {
       // 1. Fetch live order directly from Admin actions
-      const res = await fetch(`http://127.0.0.1:8000/api/orders/track/${encodeURIComponent(cleanId)}`);
+      const res = await fetch(`${API_BASE}/api/orders/track/${encodeURIComponent(cleanId)}`);
       
       if (res.ok) {
         const orderData = await res.json();

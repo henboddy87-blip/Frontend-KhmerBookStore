@@ -2,8 +2,7 @@ import { useQuery, useMutation, useQueryClient } from "./QueryClient";
 import { Book, FlashSale, SalesCampaign, CouponVoucher } from "../types";
 import { mapBackendBook } from "../context/StoreContext";
 import { mapSalesBook } from "../context/SalesContext";
-
-const API_BASE = "http://127.0.0.1:8000";
+import { API_BASE } from "../config";
 
 // 1. All Books Query (Stale time: 5 minutes, instant hydration)
 export function useBooksQuery() {

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { CheckCircle2, XCircle, Loader2, ArrowRight, ShoppingBag } from "lucide-react";
 import { useStore } from "../context/StoreContext";
+import { API_BASE } from "../config";
 
 export function PaymentCallbackPage() {
   const [searchParams] = useSearchParams();
@@ -23,7 +24,7 @@ export function PaymentCallbackPage() {
 
     const verifyPayment = async () => {
       try {
-        const response = await fetch(`http://127.0.0.1:8000/api/payway/check-transaction/${tranId}`, {
+        const response = await fetch(`${API_BASE}/api/payway/check-transaction/${tranId}`, {
           method: "POST",
           headers: { "Content-Type": "application/json" }
         });

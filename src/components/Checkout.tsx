@@ -29,6 +29,7 @@ import {
   Trash2,
 } from "lucide-react";
 import { useStore } from "../context/StoreContext";
+import { API_BASE } from "../config";
 
 interface CheckoutProps {
   isOpen: boolean;
@@ -346,7 +347,7 @@ export function Checkout({ isOpen, onClose }: CheckoutProps) {
     const code = promoInput.toUpperCase().trim();
     if (!code) return;
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/sales/coupons/validate", {
+      const res = await fetch(`${API_BASE}/api/sales/coupons/validate`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ code, cart_total: cartTotal }),
@@ -418,8 +419,7 @@ export function Checkout({ isOpen, onClose }: CheckoutProps) {
     setPaywayLoading(true);
     setPaywayError(null);
     try {
-      const backendBase = window.location.hostname === "localhost" ? "http://localhost:8000" : "http://127.0.0.1:8000";
-      const response = await fetch(`${backendBase}/api/payway/create-transaction`, {
+      const response = await fetch(`${API_BASE}/api/payway/create-transaction`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -474,7 +474,7 @@ export function Checkout({ isOpen, onClose }: CheckoutProps) {
         if (pollingTimer) clearInterval(pollingTimer);
         const pollInterval = setInterval(async () => {
           try {
-            const checkRes = await fetch(`http://127.0.0.1:8000/api/payway/check-transaction/${data.tran_id}`, {
+            const checkRes = await fetch(`${API_BASE}/api/payway/check-transaction/${data.tran_id}`, {
               method: "POST",
               headers: { "Content-Type": "application/json" }
             });
@@ -525,9 +525,8 @@ export function Checkout({ isOpen, onClose }: CheckoutProps) {
     let resolvedId = "";
 
     try {
-      const backendBase = window.location.hostname === "localhost" ? "http://localhost:8000" : "http://127.0.0.1:8000";
       const token = localStorage.getItem("frontend_token") || localStorage.getItem("token");
-      const res = await fetch(`${backendBase}/api/orders`, {
+      const res = await fetch(`${API_BASE}/api/orders`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -586,8 +585,7 @@ export function Checkout({ isOpen, onClose }: CheckoutProps) {
     setKhqrLoading(true);
     setKhqrError(null);
     try {
-      const backendBase = window.location.hostname === "localhost" ? "http://localhost:8000" : "http://127.0.0.1:8000";
-      const res = await fetch(`${backendBase}/api/khqr/generate`, {
+      const res = await fetch(`${API_BASE}/api/khqr/generate`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -670,10 +668,9 @@ export function Checkout({ isOpen, onClose }: CheckoutProps) {
 
   const simulateKhqrApproval = async () => {
     setProcessing(true);
-    const backendBase = window.location.hostname === "localhost" ? "http://localhost:8000" : "http://127.0.0.1:8000";
     if (khqrTranId) {
       try {
-        await fetch(`${backendBase}/api/khqr/simulate-pay/${khqrTranId}`, {
+        await fetch(`${API_BASE}/api/khqr/simulate-pay/${khqrTranId}`, {
           method: "POST",
           headers: { "Content-Type": "application/json" }
         });
@@ -686,7 +683,7 @@ export function Checkout({ isOpen, onClose }: CheckoutProps) {
 
     try {
       const token = localStorage.getItem("frontend_token") || localStorage.getItem("token");
-      const res = await fetch(`${backendBase}/api/orders`, {
+      const res = await fetch(`${API_BASE}/api/orders`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -759,9 +756,8 @@ export function Checkout({ isOpen, onClose }: CheckoutProps) {
     let resolvedId = "";
 
     try {
-      const backendBase = window.location.hostname === "localhost" ? "http://localhost:8000" : "http://127.0.0.1:8000";
       const token = localStorage.getItem("frontend_token") || localStorage.getItem("token");
-      const res = await fetch(`${backendBase}/api/orders`, {
+      const res = await fetch(`${API_BASE}/api/orders`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

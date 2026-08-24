@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { useStore } from "../context/StoreContext";
 import { Book } from "../types";
+import { API_BASE } from "../config";
 
 interface ChatMessage {
   id: string;
@@ -218,6 +219,7 @@ export function ChatBot({ onOpenBookDetail }: ChatBotProps) {
   useEffect(() => {
     const fetchSuggestions = async () => {
       const hosts = [
+        API_BASE,
         window.location.hostname ? `http://${window.location.hostname}:8000` : null,
         "http://localhost:8000",
         "http://127.0.0.1:8000",
@@ -288,6 +290,7 @@ export function ChatBot({ onOpenBookDetail }: ChatBotProps) {
     };
 
     const targetHosts = [
+      API_BASE,
       window.location.hostname ? `http://${window.location.hostname}:8000` : null,
       "http://localhost:8000",
       "http://127.0.0.1:8000",
