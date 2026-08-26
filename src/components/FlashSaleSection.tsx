@@ -41,35 +41,35 @@ export function FlashSaleSection({ onBookClick }: FlashSaleSectionProps) {
       <div className="absolute -top-40 -left-40 w-96 h-96 bg-white/5 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-rose-500/10 rounded-full blur-[100px] pointer-events-none" />
 
-      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 relative z-10">
-        {/* Flash Sale Header Banner (Restored original green card) */}
-        <div className="flex flex-col xl:flex-row items-center justify-between gap-8 mb-12 bg-emerald-900 rounded-[2rem] p-8 sm:p-12 text-white border border-emerald-500/30 shadow-2xl relative overflow-hidden group">
+      <div className="max-w-[1600px] 2xl:max-w-[1720px] mx-auto px-4 sm:px-6 relative z-10">
+        {/* Flash Sale Header Banner */}
+        <div className="flex flex-col xl:flex-row items-center justify-between gap-6 sm:gap-8 mb-10 sm:mb-12 bg-emerald-900 rounded-[1.5rem] sm:rounded-[2rem] p-6 sm:p-10 md:p-12 text-white border border-emerald-500/30 shadow-2xl relative overflow-hidden group">
           <div className="absolute -right-20 -top-20 w-72 h-72 bg-emerald-500/25 rounded-full blur-[80px] pointer-events-none group-hover:bg-emerald-500/35 transition-all duration-700" />
           <div className="absolute -left-20 -bottom-20 w-72 h-72 bg-teal-500/20 rounded-full blur-[80px] pointer-events-none transition-all duration-700" />
 
           <div className="relative z-10 text-center xl:text-left flex-1">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-500/20 border border-red-400/40 text-red-300 text-xs font-black uppercase tracking-widest mb-4 shadow-[0_0_15px_rgba(225,29,72,0.2)]">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/20 border border-red-400/40 text-red-300 text-xs font-black uppercase tracking-widest mb-3 sm:mb-4 shadow-[0_0_15px_rgba(225,29,72,0.2)]">
               <span className="w-2 h-2 rounded-full bg-red-400 animate-pulse" /> Limited Time Deal
             </div>
             <h2
-              className="text-4xl sm:text-6xl font-black tracking-tight text-white drop-shadow-sm"
+              className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white drop-shadow-sm leading-tight"
               style={{ fontFamily: "Merriweather, serif" }}
             >
               Flash Sales & Lightning Deals
             </h2>
-            <p className="text-emerald-100/90 text-base sm:text-lg mt-4 max-w-2xl mx-auto xl:mx-0 font-medium leading-relaxed">
+            <p className="text-emerald-100/90 text-sm sm:text-base md:text-lg mt-3 sm:mt-4 max-w-2xl mx-auto xl:mx-0 font-medium leading-relaxed">
               Grab bestselling books at deeply discounted prices. Don't blink—these exclusive offers vanish when the timer runs out!
             </p>
           </div>
 
           {/* Primary Global Countdown Timer */}
           {activeFlashSales.length > 0 && (
-            <div className="relative z-10 flex flex-col items-center gap-4 bg-black/40 backdrop-blur-xl border border-white/10 p-6 rounded-3xl shadow-2xl shrink-0">
-              <div className="flex items-center gap-2 text-rose-400 text-sm font-black uppercase tracking-widest">
-                <Clock className="w-5 h-5 animate-pulse" />
+            <div className="relative z-10 flex flex-col items-center gap-3 sm:gap-4 bg-black/40 backdrop-blur-xl border border-white/10 p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-2xl shrink-0 w-full sm:w-auto">
+              <div className="flex items-center gap-2 text-rose-400 text-xs sm:text-sm font-black uppercase tracking-widest">
+                <Clock className="w-4 h-4 sm:w-5 sm:h-5 animate-pulse" />
                 <span>Offer Ends In</span>
               </div>
-              <div className="flex items-center gap-2 font-mono">
+              <div className="flex items-center justify-center gap-1.5 sm:gap-2 font-mono">
                 {(() => {
                   const firstSale = activeFlashSales[0];
                   const time = getTimeRemaining(firstSale.end_time, firstSale.start_time);
@@ -77,31 +77,31 @@ export function FlashSaleSection({ onBookClick }: FlashSaleSectionProps) {
                     <>
                       {time.days > 0 && (
                         <div className="flex flex-col items-center">
-                          <span className="bg-gradient-to-b from-white/20 to-white/5 border border-white/10 px-4 py-3 rounded-2xl text-2xl sm:text-4xl font-black text-white shadow-inner">
+                          <span className="bg-gradient-to-b from-white/20 to-white/5 border border-white/10 px-2.5 py-2 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl text-xl sm:text-3xl md:text-4xl font-black text-white shadow-inner min-w-[42px] sm:min-w-[56px] text-center">
                             {time.days.toString().padStart(2, "0")}
                           </span>
-                          <span className="text-[10px] text-gray-400 uppercase font-black tracking-widest mt-2">Days</span>
+                          <span className="text-[9px] sm:text-[10px] text-gray-400 uppercase font-black tracking-widest mt-1.5 sm:mt-2">Days</span>
                         </div>
                       )}
                       <div className="flex flex-col items-center">
-                        <span className="bg-gradient-to-b from-white/20 to-white/5 border border-white/10 px-4 py-3 rounded-2xl text-2xl sm:text-4xl font-black text-white shadow-inner">
+                        <span className="bg-gradient-to-b from-white/20 to-white/5 border border-white/10 px-2.5 py-2 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl text-xl sm:text-3xl md:text-4xl font-black text-white shadow-inner min-w-[42px] sm:min-w-[56px] text-center">
                           {time.hours.toString().padStart(2, "0")}
                         </span>
-                        <span className="text-[10px] text-gray-400 uppercase font-black tracking-widest mt-2">Hours</span>
+                        <span className="text-[9px] sm:text-[10px] text-gray-400 uppercase font-black tracking-widest mt-1.5 sm:mt-2">Hours</span>
                       </div>
-                      <span className="text-white/30 font-black text-3xl mb-5">:</span>
+                      <span className="text-white/30 font-black text-xl sm:text-3xl mb-4 sm:mb-5">:</span>
                       <div className="flex flex-col items-center">
-                        <span className="bg-gradient-to-b from-white/20 to-white/5 border border-white/10 px-4 py-3 rounded-2xl text-2xl sm:text-4xl font-black text-white shadow-inner">
+                        <span className="bg-gradient-to-b from-white/20 to-white/5 border border-white/10 px-2.5 py-2 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl text-xl sm:text-3xl md:text-4xl font-black text-white shadow-inner min-w-[42px] sm:min-w-[56px] text-center">
                           {time.minutes.toString().padStart(2, "0")}
                         </span>
-                        <span className="text-[10px] text-gray-400 uppercase font-black tracking-widest mt-2">Min</span>
+                        <span className="text-[9px] sm:text-[10px] text-gray-400 uppercase font-black tracking-widest mt-1.5 sm:mt-2">Min</span>
                       </div>
-                      <span className="text-white/30 font-black text-3xl mb-5">:</span>
+                      <span className="text-white/30 font-black text-xl sm:text-3xl mb-4 sm:mb-5">:</span>
                       <div className="flex flex-col items-center">
-                        <span className="bg-gradient-to-b from-rose-500 to-red-600 border border-rose-400/50 px-4 py-3 rounded-2xl text-2xl sm:text-4xl font-black text-white shadow-[0_0_20px_rgba(225,29,72,0.4)]">
+                        <span className="bg-gradient-to-b from-rose-500 to-red-600 border border-rose-400/50 px-2.5 py-2 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl text-xl sm:text-3xl md:text-4xl font-black text-white shadow-[0_0_20px_rgba(225,29,72,0.4)] min-w-[42px] sm:min-w-[56px] text-center">
                           {time.seconds.toString().padStart(2, "0")}
                         </span>
-                        <span className="text-[10px] text-rose-300 uppercase font-black tracking-widest mt-2">Sec</span>
+                        <span className="text-[9px] sm:text-[10px] text-rose-300 uppercase font-black tracking-widest mt-1.5 sm:mt-2">Sec</span>
                       </div>
                     </>
                   );
@@ -112,7 +112,7 @@ export function FlashSaleSection({ onBookClick }: FlashSaleSectionProps) {
         </div>
 
         {/* Flash Sale Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 sm:gap-6">
           {activeFlashSales.map((sale) => {
             const book = sale.book || books.find((b) => b.id === sale.book_id);
             const time = getTimeRemaining(sale.end_time, sale.start_time);

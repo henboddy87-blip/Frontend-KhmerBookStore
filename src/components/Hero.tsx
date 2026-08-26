@@ -216,7 +216,7 @@ export function Hero({ onShopNow, onCategoryChange }: HeroProps) {
   };
 
   return (
-    <section className="bg-black relative overflow-hidden transition-colors duration-500 pt-12 pb-20 md:pt-20 md:pb-32 min-h-[600px] flex items-center group/hero">
+    <section className="bg-black relative overflow-hidden transition-colors duration-500 pt-8 pb-14 sm:pt-14 sm:pb-20 md:pt-20 md:pb-28 min-h-[520px] sm:min-h-[600px] flex items-center group/hero">
       {/* Cinematic Background Image */}
       <div className="absolute inset-0 z-0">
         <img 
@@ -224,80 +224,80 @@ export function Hero({ onShopNow, onCategoryChange }: HeroProps) {
           alt="Cinematic Background" 
           className={`w-full h-full object-cover opacity-30 blur-sm transition-transform duration-[2000ms] ease-out ${animating ? 'scale-110' : 'scale-100'}`} 
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#111111] via-[#111111]/80 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#111111] via-[#111111]/85 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-transparent to-[#111111]/50" />
       </div>
 
-      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 relative z-10 w-full">
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      <div className="max-w-[1600px] 2xl:max-w-[1720px] mx-auto px-4 sm:px-6 relative z-10 w-full">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-12 items-center">
           
-          {/* Left Content (7 cols) */}
+          {/* Left Content (6-7 cols) */}
           <div className={`lg:col-span-6 xl:col-span-5 transition-all duration-700 ease-out ${animating ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'}`}>
-            <div className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-white/10 border border-white/20 text-emerald-400 text-xs font-bold tracking-widest uppercase mb-6 shadow-sm backdrop-blur-md">
+            <div className="inline-flex items-center gap-2 py-1.5 px-3.5 sm:px-4 rounded-full bg-white/10 border border-white/20 text-emerald-400 text-[11px] sm:text-xs font-bold tracking-widest uppercase mb-4 sm:mb-6 shadow-sm backdrop-blur-md">
               <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
               {slide.badge}
             </div>
             
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.15] mb-6 drop-shadow-lg" style={{ fontFamily: 'Merriweather, serif' }}>
-              {slide.title} <br />
-              <span className="text-emerald-700">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white leading-[1.15] mb-4 sm:mb-6 drop-shadow-lg" style={{ fontFamily: 'Merriweather, serif' }}>
+              {slide.title} <br className="hidden sm:inline" />
+              <span className="text-emerald-400 dark:text-emerald-400">
                 {slide.highlight}
               </span>
             </h1>
             
-            <p className="text-base sm:text-lg text-gray-300 mb-8 max-w-lg leading-relaxed drop-shadow-md">
+            <p className="text-sm sm:text-base md:text-lg text-gray-300 mb-6 sm:mb-8 max-w-lg leading-relaxed drop-shadow-md">
               {slide.subtitle}
             </p>
 
-            <div className="flex flex-wrap gap-4 items-center mb-10 md:mb-14">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center mb-8 sm:mb-10 md:mb-12">
               <button 
                 onClick={() => { onCategoryChange(slide.ctaCat); onShopNow(); }} 
-                className="px-8 py-3.5 bg-white hover:bg-gray-100 text-gray-900 rounded-full font-bold transition-all flex items-center gap-2 shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+                className="px-7 py-3.5 bg-white hover:bg-gray-100 text-gray-900 rounded-full font-bold text-sm sm:text-base transition-all flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
               >
                 {slide.cta} 
               </button>
               <button 
                 onClick={onShopNow} 
-                className="px-8 py-3.5 bg-transparent border-2 border-white/30 hover:border-white text-white rounded-full font-bold transition-colors backdrop-blur-sm cursor-pointer"
+                className="px-7 py-3.5 bg-transparent border-2 border-white/30 hover:border-white text-white rounded-full font-bold text-sm sm:text-base transition-colors backdrop-blur-sm flex items-center justify-center cursor-pointer"
               >
                 {t('viewAllBooks')}
               </button>
             </div>
 
             {/* Clean Stats */}
-            <div className="flex items-center gap-8 md:gap-12 pt-8 border-t border-white/10">
+            <div className="flex items-center gap-6 sm:gap-8 md:gap-12 pt-6 sm:pt-8 border-t border-white/10">
               <div>
-                <p ref={booksCount.ref as React.RefObject<HTMLParagraphElement>} className="text-3xl font-black text-white">{booksCount.display}</p>
-                <p className="text-sm font-medium text-gray-400 mt-1">{t('booksAvailable')}</p>
+                <p ref={booksCount.ref as React.RefObject<HTMLParagraphElement>} className="text-2xl sm:text-3xl font-black text-white">{booksCount.display}</p>
+                <p className="text-xs sm:text-sm font-medium text-gray-400 mt-0.5 sm:mt-1">{t('booksAvailable')}</p>
               </div>
-              <div className="w-px h-12 bg-white/10" />
+              <div className="w-px h-10 sm:h-12 bg-white/10" />
               <div>
-                <p ref={readersCount.ref as React.RefObject<HTMLParagraphElement>} className="text-3xl font-black text-white">{readersCount.display}</p>
-                <p className="text-sm font-medium text-gray-400 mt-1">{t('happyReaders')}</p>
+                <p ref={readersCount.ref as React.RefObject<HTMLParagraphElement>} className="text-2xl sm:text-3xl font-black text-white">{readersCount.display}</p>
+                <p className="text-xs sm:text-sm font-medium text-gray-400 mt-0.5 sm:mt-1">{t('happyReaders')}</p>
               </div>
             </div>
           </div>
 
-          {/* Right Image Composition (5 cols) */}
-          <div className="lg:col-span-6 xl:col-span-7 relative h-full flex items-center justify-center order-first lg:order-last mt-4 lg:mt-0 pb-8 lg:pb-0">
-            <div className={`relative w-full max-w-[500px] sm:aspect-[4/3] flex items-center justify-center transition-all duration-[1200ms] ease-[cubic-bezier(0.25,1,0.5,1)] ${animating ? 'opacity-0 scale-90 translate-y-8' : 'opacity-100 scale-100 translate-y-0'}`}>
-              <div className="relative w-44 h-64 sm:w-52 sm:h-72 md:w-56 md:h-80 lg:w-64 lg:h-96 group/stack">
+          {/* Right Image Composition (6-7 cols) */}
+          <div className="lg:col-span-6 xl:col-span-7 relative h-full flex items-center justify-center order-first lg:order-last mt-2 lg:mt-0 pb-6 lg:pb-0">
+            <div className={`relative w-full max-w-[420px] sm:max-w-[480px] lg:max-w-[540px] flex items-center justify-center transition-all duration-[1200ms] ease-[cubic-bezier(0.25,1,0.5,1)] ${animating ? 'opacity-0 scale-90 translate-y-8' : 'opacity-100 scale-100 translate-y-0'}`}>
+              <div className="relative w-36 h-52 sm:w-48 sm:h-68 md:w-56 md:h-80 lg:w-64 lg:h-96 group/stack mx-auto">
                 {slides.map((s, index) => {
                   let diff = index - current;
                   if (diff < 0) diff += slides.length;
 
                   let zIndex = 50 - diff * 10;
                   
-                  // Fan effect math
-                  let rotate = diff === 0 ? -6 : -6 + diff * 14;
-                  let translateX = diff === 0 ? -50 : -50 + diff * 40;
-                  let translateY = diff === 0 ? 20 : 20 - diff * 12;
-                  let scale = 1.05 - (diff * 0.04);
+                  // Adaptive fan effect: gentler on mobile, wider on desktop
+                  let rotate = diff === 0 ? -4 : -4 + diff * 10;
+                  let translateX = diff === 0 ? -24 : -24 + diff * 24;
+                  let translateY = diff === 0 ? 12 : 12 - diff * 8;
+                  let scale = 1.04 - (diff * 0.04);
 
                   return (
                     <div
                       key={index}
-                      className="absolute top-0 left-0 w-full h-full transition-all duration-[800ms] ease-out rounded-lg overflow-hidden border border-white/20 bg-gray-900 group-hover/stack:scale-105"
+                      className="absolute top-0 left-0 w-full h-full transition-all duration-[800ms] ease-out rounded-xl overflow-hidden border border-white/20 bg-gray-900 group-hover/stack:scale-105"
                       style={{
                         zIndex,
                         transform: `translate(${translateX}px, ${translateY}px) rotate(${rotate}deg) scale(${scale})`,
@@ -321,15 +321,15 @@ export function Hero({ onShopNow, onCategoryChange }: HeroProps) {
         </div>
 
         {/* Custom Paginator Lines */}
-        <div className="mt-10 lg:absolute lg:bottom-0 lg:left-1/2 lg:-translate-x-1/2 flex justify-center gap-2 w-full lg:w-auto">
+        <div className="mt-8 sm:mt-10 lg:absolute lg:bottom-4 lg:left-1/2 lg:-translate-x-1/2 flex justify-center gap-1.5 sm:gap-2 w-full lg:w-auto px-4 overflow-x-auto scrollbar-hide py-1">
           {slides.map((_, i) => (
             <button
               key={i}
               onClick={() => goTo(i)}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
+              className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer flex-shrink-0 ${
                 i === current 
-                ? 'bg-emerald-500 w-8' 
-                : 'bg-white/20 w-2 hover:bg-white/40'
+                ? 'bg-emerald-500 w-6 sm:w-8' 
+                : 'bg-white/20 w-1.5 sm:w-2 hover:bg-white/40'
               }`}
               aria-label={`Go to slide ${i + 1}`}
             />

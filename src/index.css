@@ -22,21 +22,33 @@
     --text-primary: #f3f4f6;
   }
 
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
   body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
     transition:
       background-color 0.3s ease,
       color 0.3s ease;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
 * {
   font-family: "Inter", sans-serif;
+  box-sizing: border-box;
 }
 
 button, [role="button"], input[type="button"], input[type="submit"] {
   cursor: pointer;
+  touch-action: manipulation;
 }
 
 button:disabled, [role="button"][aria-disabled="true"], input[type="button"]:disabled, input[type="submit"]:disabled {

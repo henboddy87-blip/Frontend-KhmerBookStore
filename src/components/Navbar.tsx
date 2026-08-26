@@ -247,37 +247,37 @@ export function Navbar({
       <nav
         className={`sticky top-0 z-[110] transition-all duration-300 ${isScrolled ? "bg-white/95 dark:bg-dark-bg/95 backdrop-blur-md shadow-md" : "bg-white dark:bg-dark-bg shadow-sm"}`}
       >
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1600px] 2xl:max-w-[1720px] mx-auto px-3 sm:px-6 lg:px-8">
           <div
-            className={`flex flex-wrap items-center gap-4 ${compactDetail ? "py-1" : "py-3"}`}
+            className={`flex items-center justify-between gap-2 sm:gap-4 ${compactDetail ? "py-1.5" : "py-2.5 sm:py-3"}`}
           >
             {/* Logo + Desktop Nav links */}
-            <div className="order-1 flex min-w-0 items-center gap-4 lg:gap-5">
-              {/* Logo absolute path so it resolves correctly on any route */}
+            <div className="flex min-w-0 items-center gap-3 lg:gap-4 xl:gap-5 flex-shrink-0">
+              {/* Logo */}
               <button
                 type="button"
                 onClick={handleHomeClick}
                 aria-label="Go to homepage"
-                className="flex items-center gap-2 flex-shrink-0"
+                className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0 cursor-pointer"
               >
                 <div
-                  className={`h-20 w-20 sm:h-28 sm:w-28 ${compactDetail ? "h-12 w-12 sm:h-16 sm:w-16" : ""} flex items-center justify-center flex-shrink-0 `}
+                  className={`h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 lg:h-16 lg:w-16 ${compactDetail ? "h-9 w-9 sm:h-11 sm:w-11" : ""} flex items-center justify-center flex-shrink-0`}
                 >
                   <img
                     src="/logo.png"
-                    alt="logo"
+                    alt="KhmerBookStore Logo"
                     className="w-full h-full object-contain cursor-pointer"
                   />
                 </div>
-                <div className="flex items-center">
+                <div className="flex items-center tracking-tight">
                   <span
-                    className="text-xl sm:text-2xl md:text-3xl font-black text-emerald-900 dark:text-emerald-400 cursor-pointer"
+                    className="text-lg sm:text-xl md:text-2xl font-black text-emerald-900 dark:text-emerald-400 cursor-pointer"
                     style={{ fontFamily: "Merriweather, serif" }}
                   >
                     Khmer
                   </span>
                   <span
-                    className="text-xl sm:text-2xl md:text-3xl font-black text-emerald-600 dark:text-emerald-600 cursor-pointer"
+                    className="text-lg sm:text-xl md:text-2xl font-black text-emerald-600 dark:text-emerald-500 cursor-pointer"
                     style={{ fontFamily: "Merriweather, serif" }}
                   >
                     Bookstore
@@ -285,11 +285,11 @@ export function Navbar({
                 </div>
               </button>
 
-              {/* Book category */}
-              <div className="hidden xl:flex items-center gap-1">
+              {/* Book categories on large screens */}
+              <div className="hidden 2xl:flex items-center gap-1">
                 <button
                   onClick={handleHomeClick}
-                  className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-[18px] font-semibold transition-all whitespace-nowrap ${
+                  className={`flex items-center gap-1 px-3 py-1.5 rounded-full text-sm font-semibold transition-all whitespace-nowrap cursor-pointer ${
                     isHome
                       ? "bg-emerald-900 text-white dark:bg-emerald-800"
                       : "text-gray-600 dark:text-gray-300 hover:text-emerald-900 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-white/5"
@@ -302,7 +302,7 @@ export function Navbar({
                 <button
                   type="button"
                   onClick={() => navigate("/special-offers")}
-                  className={`flex items-center gap-1.5 px-3.5 py-2 rounded-full text-[17px] font-bold transition-all cursor-pointer whitespace-nowrap ${
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-bold transition-all cursor-pointer whitespace-nowrap ${
                     location.pathname === "/special-offers" || location.pathname === "/deals"
                       ? "bg-emerald-600 text-white shadow-md"
                       : "text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/30 border border-red-500/20"
@@ -312,14 +312,14 @@ export function Navbar({
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
                   </span>
-                  <span> Deals & Sales</span>
+                  <span>Deals</span>
                 </button>
 
                 {navCategories.map((cat) => (
                   <button
                     key={cat.id}
                     onClick={() => handleCatClick(cat.id)}
-                    className={`px-4 py-2 rounded-full text-[18px] font-semibold transition-all cursor-pointer whitespace-nowrap ${
+                    className={`px-3 py-1.5 rounded-full text-sm font-semibold transition-all cursor-pointer whitespace-nowrap ${
                       isCatActive(cat.id)
                         ? "bg-emerald-900 text-white dark:bg-emerald-800"
                         : "text-gray-600 dark:text-gray-300 hover:text-emerald-900 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-white/5"
@@ -329,12 +329,40 @@ export function Navbar({
                   </button>
                 ))}
               </div>
+
+              {/* Tablet/Laptop categories (xl breakpoint) */}
+              <div className="hidden xl:flex 2xl:hidden items-center gap-1">
+                <button
+                  onClick={handleHomeClick}
+                  className={`px-2.5 py-1.5 rounded-full text-xs font-semibold transition-all whitespace-nowrap cursor-pointer ${
+                    isHome
+                      ? "bg-emerald-900 text-white dark:bg-emerald-800"
+                      : "text-gray-600 dark:text-gray-300 hover:text-emerald-900 dark:hover:text-emerald-400"
+                  }`}
+                >
+                  {t("home")}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => navigate("/special-offers")}
+                  className="flex items-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-bold text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/30 border border-red-500/20 whitespace-nowrap cursor-pointer"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-ping" />
+                  Deals
+                </button>
+                <button
+                  onClick={() => navigate("/books")}
+                  className="px-2.5 py-1.5 rounded-full text-xs font-semibold text-gray-600 dark:text-gray-300 hover:text-emerald-900 dark:hover:text-emerald-400 whitespace-nowrap cursor-pointer"
+                >
+                  {t("allBooks")}
+                </button>
+              </div>
             </div>
 
-            {/* Search Bar */}
+            {/* Desktop Search Bar */}
             <form
               onSubmit={handleSearch}
-              className="order-3 hidden lg:flex flex-1 max-w-4xl xl:max-w-5xl mx-4"
+              className="hidden lg:flex flex-1 max-w-sm xl:max-w-md 2xl:max-w-xl mx-2 xl:mx-4"
             >
               <div
                 ref={searchRef}
@@ -353,14 +381,14 @@ export function Navbar({
                     setSearchFocused(false);
                     setTimeout(() => setShowDropdown(false), 200);
                   }}
-                  className={`w-full px-6 py-3.5 pl-14 rounded-full border-2 transition-all focus:outline-none bg-white dark:bg-dark-card text-[18px] dark:text-white ${
+                  className={`w-full px-4 py-2.5 pl-11 rounded-full border-2 transition-all focus:outline-none bg-white dark:bg-dark-card text-sm dark:text-white ${
                     searchFocused
-                      ? "border-emerald-500 shadow-lg dark:border-emerald-600"
+                      ? "border-emerald-500 shadow-md dark:border-emerald-600"
                       : "border-gray-200 dark:border-white/10 hover:border-gray-300 dark:hover:border-white/20"
                   }`}
                 />
                 <FaSearch
-                  className={`absolute left-5 top-1/2 -translate-y-1/2 transition-colors text-lg ${searchFocused ? "text-emerald-600" : "text-gray-400"}`}
+                  className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors text-base ${searchFocused ? "text-emerald-600" : "text-gray-400"}`}
                 />
                 {searchQuery && (
                   <button
@@ -370,9 +398,9 @@ export function Navbar({
                       onSearch("");
                       setShowDropdown(false);
                     }}
-                    className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 bg-white dark:bg-dark-card rounded-full p-1"
+                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 bg-white dark:bg-dark-card rounded-full p-1 cursor-pointer"
                   >
-                    <FaTimes size={16} />
+                    <FaTimes size={14} />
                   </button>
                 )}
                 <SearchDropdown />
@@ -380,16 +408,16 @@ export function Navbar({
             </form>
 
             {/* Action Buttons */}
-            <div className="order-2 ml-auto flex items-center gap-1.5 sm:gap-2 flex-shrink-0 xl:ml-2">
+            <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
               {/* Language Switcher Dropdown */}
               <div ref={langMenuRef} className="relative group">
                 <button
                   type="button"
-                  className="flex items-center gap-2 px-3 py-2 rounded-full bg-white/80 dark:bg-dark-card/80 backdrop-blur-sm border border-gray-200 dark:border-white/10 hover:border-emerald-500 dark:hover:border-emerald-600 hover:shadow-md transition-all cursor-pointer"
+                  className="flex items-center gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-full bg-white/80 dark:bg-dark-card/80 backdrop-blur-sm border border-gray-200 dark:border-white/10 hover:border-emerald-500 dark:hover:border-emerald-600 hover:shadow-sm transition-all cursor-pointer"
                   onClick={() => setShowLanguageMenu(!showLanguageMenu)}
                   aria-label="Change language"
                 >
-                  <div className="w-6 h-6 rounded-full overflow-hidden flex items-center justify-center bg-gray-100 dark:bg-white/5 shadow-inner border border-gray-100 dark:border-white/5">
+                  <div className="w-5 h-5 sm:w-5.5 sm:h-5.5 rounded-full overflow-hidden flex items-center justify-center bg-gray-100 dark:bg-white/5 shadow-inner border border-gray-100 dark:border-white/5 flex-shrink-0">
                     <img
                       src={
                         language === "km"
@@ -400,11 +428,11 @@ export function Navbar({
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <span className="text-[10px] font-black uppercase tracking-widest text-gray-700 dark:text-gray-300">
-                    {language === "km" ? "ភាសាខ្មែរ" : "English"}
+                  <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-wider text-gray-700 dark:text-gray-300 hidden xs:inline">
+                    {language === "km" ? "ភាសាខ្មែរ" : "EN"}
                   </span>
                   <div
-                    className={`w-2 h-2 border-r-2 border-b-2 border-gray-400 transition-transform ${showLanguageMenu ? "rotate-45 -translate-y-0.5" : "-rotate-135 translate-y-0.5"}`}
+                    className={`w-1.5 h-1.5 border-r-2 border-b-2 border-gray-400 transition-transform ${showLanguageMenu ? "rotate-225 -translate-y-0.5" : "rotate-45 translate-y-0"}`}
                     style={{
                       transform: showLanguageMenu
                         ? "rotate(225deg)"
@@ -414,10 +442,10 @@ export function Navbar({
                 </button>
 
                 {showLanguageMenu && (
-                  <div className="absolute top-full right-0 mt-2 w-40 bg-white dark:bg-dark-card rounded-2xl shadow-2xl border border-gray-100 dark:border-white/5 py-2 z-[60] animate-fadeIn">
-                    <div className="px-3 py-1.5 mb-1">
+                  <div className="absolute top-full right-0 mt-2 w-36 sm:w-40 bg-white dark:bg-dark-card rounded-2xl shadow-2xl border border-gray-100 dark:border-white/5 py-2 z-[60] animate-fadeIn">
+                    <div className="px-3 py-1 mb-1">
                       <span className="text-[9px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-widest">
-                        Select Language
+                        Language
                       </span>
                     </div>
                     <button
@@ -425,9 +453,9 @@ export function Navbar({
                         setLanguage("km");
                         setShowLanguageMenu(false);
                       }}
-                      className={`w-full flex items-center gap-3 px-4 py-2.5 hover:bg-emerald-50 dark:hover:bg-white/5 transition-colors text-left ${language === "km" ? "bg-emerald-50/50 dark:bg-white/10" : ""}`}
+                      className={`w-full flex items-center gap-2.5 px-3.5 py-2 hover:bg-emerald-50 dark:hover:bg-white/5 transition-colors text-left cursor-pointer ${language === "km" ? "bg-emerald-50/50 dark:bg-white/10" : ""}`}
                     >
-                      <div className="w-6 h-6 rounded-full overflow-hidden flex-shrink-0 border border-gray-100 dark:border-white/10 shadow-sm">
+                      <div className="w-5 h-5 rounded-full overflow-hidden flex-shrink-0 border border-gray-100 dark:border-white/10 shadow-sm">
                         <img
                           src="https://flagcdn.com/w40/kh.png"
                           alt="Khmer"
@@ -435,9 +463,9 @@ export function Navbar({
                         />
                       </div>
                       <span
-                        className={`text-sm font-bold ${language === "km" ? "text-emerald-900" : "text-gray-700"}`}
+                        className={`text-xs sm:text-sm font-bold ${language === "km" ? "text-emerald-900 dark:text-emerald-400" : "text-gray-700 dark:text-gray-300"}`}
                       >
-                        Khmer
+                        ភាសាខ្មែរ
                       </span>
                       {language === "km" && (
                         <div className="ml-auto w-1.5 h-1.5 bg-emerald-600 rounded-full" />
@@ -448,9 +476,9 @@ export function Navbar({
                         setLanguage("en");
                         setShowLanguageMenu(false);
                       }}
-                      className={`w-full flex items-center gap-3 px-4 py-2.5 hover:bg-emerald-50 dark:hover:bg-white/5 transition-colors text-left ${language === "en" ? "bg-emerald-50/50 dark:bg-white/10" : ""}`}
+                      className={`w-full flex items-center gap-2.5 px-3.5 py-2 hover:bg-emerald-50 dark:hover:bg-white/5 transition-colors text-left cursor-pointer ${language === "en" ? "bg-emerald-50/50 dark:bg-white/10" : ""}`}
                     >
-                      <div className="w-6 h-6 rounded-full overflow-hidden flex-shrink-0 border border-gray-100 dark:border-white/10 shadow-sm">
+                      <div className="w-5 h-5 rounded-full overflow-hidden flex-shrink-0 border border-gray-100 dark:border-white/10 shadow-sm">
                         <img
                           src="https://flagcdn.com/w40/us.png"
                           alt="English"
@@ -458,7 +486,7 @@ export function Navbar({
                         />
                       </div>
                       <span
-                        className={`text-sm font-bold ${language === "en" ? "text-emerald-900" : "text-gray-700"}`}
+                        className={`text-xs sm:text-sm font-bold ${language === "en" ? "text-emerald-900 dark:text-emerald-400" : "text-gray-700 dark:text-gray-300"}`}
                       >
                         English
                       </span>
@@ -475,28 +503,28 @@ export function Navbar({
                 type="button"
                 onClick={user ? () => navigate('/profile') : onAuthClick}
                 aria-label={user ? "Go to profile" : "Open sign in panel"}
-                className="hidden md:flex items-center gap-2 px-3 py-2 rounded-full text-gray-700 dark:text-gray-200 hover:text-emerald-900 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-white/5 transition-all cursor-pointer"
+                className="flex items-center gap-1.5 sm:gap-2 p-1.5 sm:px-3 sm:py-2 rounded-full text-gray-700 dark:text-gray-200 hover:text-emerald-900 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-white/5 transition-all cursor-pointer"
               >
                 <div
-                  className={`w-8 h-8 rounded-full flex items-center justify-center overflow-hidden ${user ? "bg-emerald-800 dark:bg-emerald-700 text-white" : "bg-gray-100 dark:bg-white/10 text-gray-700 dark:text-gray-300"}`}
+                  className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center overflow-hidden ${user ? "bg-emerald-800 dark:bg-emerald-700 text-white" : "bg-gray-100 dark:bg-white/10 text-gray-700 dark:text-gray-300"}`}
                 >
                   {user ? (
                     user.avatar ? (
                       <img src={user.avatar} alt={user.name} className="w-full h-full object-cover" />
                     ) : (
-                      <span className="text-sm font-bold">
+                      <span className="text-xs sm:text-sm font-bold">
                         {user.name?.charAt(0).toUpperCase() || "U"}
                       </span>
                     )
                   ) : (
-                    <AccountIcon className="w-4 h-4" />
+                    <AccountIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                   )}
                 </div>
-                <div className="text-left hidden lg:block">
-                  <p className="text-sm text-gray-400 dark:text-gray-500">
+                <div className="text-left hidden 2xl:block">
+                  <p className="text-[11px] text-gray-400 dark:text-gray-500 leading-tight">
                     {user ? t("hello") + "," : t("welcome")}
                   </p>
-                  <p className="text-base font-semibold dark:text-white">
+                  <p className="text-xs font-semibold dark:text-white truncate max-w-[90px]">
                     {user ? user.name?.split(" ")[0] || "User" : t("signIn")}
                   </p>
                 </div>
@@ -507,11 +535,11 @@ export function Navbar({
                 type="button"
                 onClick={onWishlistClick}
                 aria-label="Open wishlist"
-                className="relative p-2.5 text-gray-700 dark:text-gray-200 hover:text-red-500 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-full transition-all cursor-pointer flex items-center justify-center"
+                className="relative p-2 sm:p-2.5 text-gray-700 dark:text-gray-200 hover:text-red-500 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-full transition-all cursor-pointer flex items-center justify-center"
               >
-                <WishlistIcon className="w-5 h-5" />
+                <WishlistIcon className="w-4.5 h-4.5 sm:w-5 sm:h-5" />
                 {wishlist.length > 0 && (
-                  <span className="absolute -top-0.5 -right-0.5 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center font-bold shadow-sm">
+                  <span className="absolute -top-0.5 -right-0.5 w-4.5 h-4.5 sm:w-5 sm:h-5 bg-red-500 text-white text-[10px] sm:text-xs rounded-full flex items-center justify-center font-bold shadow-sm">
                     {wishlist.length}
                   </span>
                 )}
@@ -522,11 +550,11 @@ export function Navbar({
                 type="button"
                 onClick={onCartClick}
                 aria-label="Open cart"
-                className={`relative p-2.5 text-gray-700 dark:text-gray-200 hover:text-emerald-800 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-white/5 rounded-full transition-all cursor-pointer flex items-center justify-center btn-press ${cartShake ? 'animate-cart-shake' : ''}`}
+                className={`relative p-2 sm:p-2.5 text-gray-700 dark:text-gray-200 hover:text-emerald-800 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-white/5 rounded-full transition-all cursor-pointer flex items-center justify-center btn-press ${cartShake ? 'animate-cart-shake' : ''}`}
               >
-                <CartIcon className="w-5 h-5" />
+                <CartIcon className="w-4.5 h-4.5 sm:w-5 sm:h-5" />
                 {cartCount > 0 && (
-                  <span className="absolute -top-0.5 -right-0.5 w-5 h-5 bg-emerald-800 text-white text-xs rounded-full flex items-center justify-center font-bold shadow-sm">
+                  <span className="absolute -top-0.5 -right-0.5 w-4.5 h-4.5 sm:w-5 sm:h-5 bg-emerald-800 text-white text-[10px] sm:text-xs rounded-full flex items-center justify-center font-bold shadow-sm">
                     {cartCount}
                   </span>
                 )}
@@ -536,29 +564,29 @@ export function Navbar({
               <button
                 type="button"
                 onClick={toggleDarkMode}
-                className={`p-2.5 rounded-full transition-all cursor-pointer ${isDarkMode ? "bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20" : "bg-gray-100 text-gray-600 hover:bg-emerald-50 hover:text-emerald-900"}`}
+                className={`p-2 sm:p-2.5 rounded-full transition-all cursor-pointer ${isDarkMode ? "bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20" : "bg-gray-100 text-gray-600 hover:bg-emerald-50 hover:text-emerald-900"}`}
                 aria-label="Toggle dark mode"
               >
-                {isDarkMode ? <FaSun size={18} /> : <FaMoon size={18} />}
+                {isDarkMode ? <FaSun size={17} /> : <FaMoon size={17} />}
               </button>
 
-              {/* Mobile Menu Toggle */}
+              {/* Mobile / Tablet Menu Toggle */}
               <button
                 type="button"
                 onClick={() => setMobileOpen(!mobileOpen)}
                 aria-label={
-                  mobileOpen ? "Close mobile menu" : "Open mobile menu"
+                  mobileOpen ? "Close menu" : "Open menu"
                 }
-                className="lg:hidden p-2.5 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/5 rounded-full transition-all cursor-pointer"
+                className="2xl:hidden p-2 sm:p-2.5 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/5 rounded-full transition-all cursor-pointer"
               >
-                {mobileOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
+                {mobileOpen ? <FaTimes size={19} /> : <FaBars size={19} />}
               </button>
             </div>
           </div>
 
-          {/* Mobile Menu */}
+          {/* Mobile & Tablet Drawer / Menu */}
           {mobileOpen && (
-            <div className="lg:hidden py-4 border-t dark:border-white/10 animate-fadeIn">
+            <div className="2xl:hidden py-4 border-t dark:border-white/10 animate-fadeIn">
               <div ref={mobileSearchRef} className="relative mb-4">
                 <form onSubmit={handleSearch}>
                   <div className="relative">
@@ -570,9 +598,9 @@ export function Navbar({
                       onFocus={() => {
                         if (searchQuery.length >= 2) setShowDropdown(true);
                       }}
-                      className="w-full px-5 py-3 pl-12 bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 dark:text-white"
+                      className="w-full px-4 py-2.5 pl-11 bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 text-sm dark:text-white"
                     />
-                    <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
+                    <FaSearch className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm" />
                     {searchQuery && (
                       <button
                         type="button"
@@ -581,7 +609,7 @@ export function Navbar({
                           onSearch("");
                           setShowDropdown(false);
                         }}
-                        className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                        className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 cursor-pointer"
                       >
                         <FaTimes size={14} />
                       </button>
@@ -601,7 +629,7 @@ export function Navbar({
                             handleResultClick(book);
                             setMobileOpen(false);
                           }}
-                          className="w-full flex items-center gap-3 px-4 py-2.5 hover:bg-emerald-50 dark:hover:bg-white/5 transition-colors text-left"
+                          className="w-full flex items-center gap-3 px-4 py-2.5 hover:bg-emerald-50 dark:hover:bg-white/5 transition-colors text-left cursor-pointer"
                         >
                           <div className="w-8 h-11 flex-shrink-0 bg-gray-100 dark:bg-white/5 rounded-lg overflow-hidden flex items-center justify-center">
                             <img
@@ -613,10 +641,10 @@ export function Navbar({
                             />
                           </div>
                           <div className="flex-1 min-w-0">
-                            <p className="text-sm font-bold text-gray-900 dark:text-white truncate">
+                            <p className="text-xs sm:text-sm font-bold text-gray-900 dark:text-white truncate">
                               {book.title}
                             </p>
-                            <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
+                            <p className="text-[11px] text-gray-500 dark:text-gray-400 truncate">
                               by {book.author} · ${book.price.toFixed(2)}
                             </p>
                           </div>
@@ -630,7 +658,7 @@ export function Navbar({
                         setShowDropdown(false);
                         setMobileOpen(false);
                       }}
-                      className="w-full px-4 py-2.5 text-sm font-semibold text-emerald-800 dark:text-emerald-500 hover:bg-emerald-50 dark:hover:bg-white/5 border-t border-gray-100 dark:border-white/5 flex items-center justify-center gap-2"
+                      className="w-full px-4 py-2.5 text-xs sm:text-sm font-semibold text-emerald-800 dark:text-emerald-500 hover:bg-emerald-50 dark:hover:bg-white/5 border-t border-gray-100 dark:border-white/5 flex items-center justify-center gap-2 cursor-pointer"
                     >
                       <FaSearch size={11} />
                       See all results
@@ -639,12 +667,12 @@ export function Navbar({
                 )}
               </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
                 <button
                   onClick={handleHomeClick}
-                  className={`flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-semibold transition-all text-left ${
+                  className={`flex items-center gap-2 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all text-left cursor-pointer ${
                     isHome
-                      ? "bg-emerald-900 text-white dark:bg-emerald-800"
+                      ? "bg-emerald-900 text-white dark:bg-emerald-800 shadow-sm"
                       : "bg-gray-100 dark:bg-white/5 text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-white/10"
                   }`}
                 >
@@ -656,22 +684,23 @@ export function Navbar({
                     navigate("/special-offers");
                     setMobileOpen(false);
                   }}
-                  className={`flex items-center gap-1.5 px-3 py-2.5 rounded-lg text-sm font-bold transition-all text-left ${
+                  className={`flex items-center gap-1.5 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all text-left cursor-pointer ${
                     location.pathname === "/special-offers" || location.pathname === "/deals"
                       ? "bg-red-600 text-white shadow-md"
                       : "bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border border-red-500/20"
                   }`}
                 >
-                  <span> Deals</span>
+                  <span className="w-2 h-2 rounded-full bg-red-500 animate-ping" />
+                  <span>Deals & Sales</span>
                 </button>
 
                 {navCategories.map((cat) => (
                   <button
                     key={cat.id}
                     onClick={() => handleCatClick(cat.id)}
-                    className={`px-3 py-2.5 rounded-lg text-sm font-semibold transition-all text-left ${
+                    className={`px-3 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all text-left cursor-pointer ${
                       isCatActive(cat.id)
-                        ? "bg-emerald-900 text-white dark:bg-emerald-800"
+                        ? "bg-emerald-900 text-white dark:bg-emerald-800 shadow-sm"
                         : "bg-gray-100 dark:bg-white/5 text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-white/10"
                     }`}
                   >
@@ -679,8 +708,6 @@ export function Navbar({
                   </button>
                 ))}
               </div>
-
-              {/* Mobile language selector removed — use top language toggle instead */}
 
               <div className="mt-4">
                 <button
@@ -692,7 +719,7 @@ export function Navbar({
                     }
                     setMobileOpen(false);
                   }}
-                  className="w-full py-3 bg-emerald-900 text-white rounded-xl font-semibold hover:bg-emerald-800 transition-colors cursor-pointer"
+                  className="w-full py-3 bg-emerald-900 hover:bg-emerald-800 text-white rounded-xl text-sm font-semibold transition-colors cursor-pointer shadow-md"
                 >
                   {user
                     ? `${t("hello")}, ${user.name?.split(" ")[0] || "User"}!`
